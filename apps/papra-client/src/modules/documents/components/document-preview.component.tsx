@@ -166,7 +166,9 @@ export const DocumentBlobPreview: Component<{ blob: Blob; mimeType: string }> = 
       </Match>
 
       <Match when={getIsPdf()}>
-        <PdfViewer url={getObjectUrl()!} />
+        <Show when={getObjectUrl()} keyed>
+          {(url) => <PdfViewer url={url} />}
+        </Show>
       </Match>
 
       <Match when={getIsTxtLike()}>
